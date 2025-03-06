@@ -1,0 +1,22 @@
+name: Run Naukri Resume Updater
+
+on:
+  schedule:
+    - cron: "30 1 * * *"  # Runs daily at 7:00 AM IST (1:30 AM UTC)
+
+jobs:
+  run-jar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'  # Use the Java version your JAR needs
+
+      - name: Run JAR File
+        run: java -jar NaukriResumeUpdater.jar
